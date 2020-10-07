@@ -1,9 +1,7 @@
-pipeline {
+node ('build-machine'){
+  stage('test'){
 
-stage('Test') {
-        steps {
-            echo 'Testing...'
-            sh 'npm test'
-        }
-    }
+    echo 'testing...'
+    sh 'npm test'
+  }
 }
