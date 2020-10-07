@@ -5,9 +5,11 @@ stage('Checkout') {
                           userRemoteConfigs: [[url: 'git@github.com:sapienstech/angular-example.git', credentialsId: constants.credentialsGitId]]
                 ])
         }
+
+  tools {nodejs "NodeJS8.5"}
   stage('test'){
 
     echo 'testing...'
-    npm 'test'
+    sh 'npm test'
   }
 }
