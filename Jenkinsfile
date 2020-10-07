@@ -8,6 +8,6 @@ stage('Checkout') {
   stage('test'){
 
     echo 'testing...'
-    sh 'npm test'
+    npm test
   }
 }
