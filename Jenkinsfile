@@ -1,7 +1,9 @@
 node ('master'){
 stage('Checkout') {
-          checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github_decisionbot', url: 'https://github.com/sapienstech/angular-example']]])
-
+          checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+                          extensions       : [[$class: 'CloneOption', timeout: 30]],
+                          userRemoteConfigs: [[url: 'git@github.com:sapienstech/angular-example.git', credentialsId: constants.credentialsGitId]]
+                ])
         }
   stage('test'){
 
