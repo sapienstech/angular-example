@@ -13,7 +13,8 @@ stage('Checkout') {
               withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true', "NODE_ENV=CI"]) {
                   sh 'printenv'
                   timeout(40) {
-                      sh (npm -version)
+                      sh ('npm install')
+                      sh ('npm -version')
                   }
               }
           }
@@ -29,7 +30,7 @@ stage('Checkout') {
                     withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true', "NODE_ENV=CI"]) {
                         sh 'printenv'
                         timeout(40) {
-                            mpm test
+                            npm test
                         }
                     }
                 }
