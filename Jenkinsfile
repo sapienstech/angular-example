@@ -9,8 +9,10 @@ stage('Checkout') {
         }
 
           stage('Test') {
+
+            nodejs(nodeJSInstallationName: 'NodeJS12.0'){
                    sh 'npm install'
                    sh 'npm test'
-
+            }
          }
 }
