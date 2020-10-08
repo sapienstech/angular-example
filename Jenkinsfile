@@ -17,6 +17,7 @@ stage('Checkout') {
                                     sh 'printenv'
                                     timeout(40) {
                                           nodejs(nodeJSInstallationName: 'NodeJS12.0'){
+                                              sh 'npm install -g @angular/cli'
                                                            sh 'npm test'
 
                                                     }
