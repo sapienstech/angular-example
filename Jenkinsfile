@@ -1,6 +1,6 @@
 node ('SpotChrome'){
 
- def npm = tool name: 'NodeJS10.0'
+ def npm = tool name: 'NodeJS12.0'
 stage('Checkout') {
           checkout([$class: 'GitSCM', branches: [[name: '*/master']],
                           extensions       : [[$class: 'CloneOption', timeout: 30]],
