@@ -1,4 +1,4 @@
-node ('master'){
+node ('SpotChrome'){
 stage('Checkout') {
           checkout([$class: 'GitSCM', branches: [[name: '*/master']],
                           extensions       : [[$class: 'CloneOption', timeout: 30]],
@@ -6,7 +6,6 @@ stage('Checkout') {
                 ])
         }
 
-  tools {nodejs "NodeJS8.5"}
   stage('test'){
 
     echo 'testing...'
