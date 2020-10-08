@@ -10,7 +10,6 @@ stage('Checkout') {
                 ])
         }
 
-  try {
           stage('Test') {
            sh 'node -v'
                    sh 'npm install'
