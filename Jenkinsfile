@@ -1,4 +1,6 @@
 node ('SpotChrome'){
+
+ def npm = tool name: 'NodeJS10.0'
 stage('Checkout') {
           checkout([$class: 'GitSCM', branches: [[name: '*/master']],
                           extensions       : [[$class: 'CloneOption', timeout: 30]],
@@ -6,9 +8,18 @@ stage('Checkout') {
                 ])
         }
 
-  stage('test'){
+  try {
+          stage('Test') {
+              withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true', "NODE_ENV=CI"]) {
+                  sh 'printenv'
+                  timeout(40) {
+                      npm -version
+                  }
+              }
+          }
 
-    echo 'testing...'
-    sh 'npm test'
-  }
+      } catch (Exception e) {
+          println e
+          currentBuild.result = 'UNSTABLE'
+      }
 }
