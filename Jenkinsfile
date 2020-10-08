@@ -12,7 +12,7 @@ stage('Checkout') {
           stage('Test') {
           withNPM(npmrcConfig:'70dd55ee-2ff7-4e22-b104-57dbad3628f7') {
                       echo "Performing npm build..."
-                      sh 'npm install'
+                      npm install
                   }
 
               withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true', "NODE_ENV=CI"]) {
