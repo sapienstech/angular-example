@@ -1,21 +1,20 @@
-pipeline {
-  agent 'SpotChrome'
+node ('SpotChrome'){
 
-  tools {nodejs "node"}
+tools {nodejs "node"}
 
-  stages {
+ def npm = tool name: 'NodeJS12.0'
+stage('Checkout') {
+          checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+                          extensions       : [[$class: 'CloneOption', timeout: 30]],
+                          userRemoteConfigs: [[url: 'https://github.com/sapienstech/angular-example.git']]
+                ])
+        }
 
-    stage('Build') {
-      steps {
-        sh 'npm install'
-      }
-    }
+  try {
+          stage('Test') {
+           sh 'node -v'
+                   sh 'npm install'
+                   sh 'npm test'
 
-
-    stage('Test') {
-      steps {
-        sh 'node test'
-      }
-    }
-  }
+         }
 }
