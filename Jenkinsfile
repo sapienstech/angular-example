@@ -9,7 +9,6 @@ stage('Checkout') {
         }
 
           stage('Test') {
-           sh 'node -v'
                    sh 'npm install'
                    sh 'npm test'
 
