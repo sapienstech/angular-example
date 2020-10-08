@@ -8,11 +8,25 @@ stage('Checkout') {
                 ])
         }
 
-          stage('Test') {
 
-            nodejs(nodeJSInstallationName: 'NodeJS12.0'){
-                   sh 'npm -version'
 
-            }
-         }
+
+              try {
+                            stage('Test') {
+                                withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true', "NODE_ENV=CI"]) {
+                                    sh 'printenv'
+                                    timeout(40) {
+                                          nodejs(nodeJSInstallationName: 'NodeJS12.0'){
+                                                           sh 'npm test'
+
+                                                    }
+                                    }
+                                }
+                            }
+
+                        } catch (Exception e) {
+                            println e
+                            currentBuild.result = 'UNSTABLE'
+                        }
+
 }
