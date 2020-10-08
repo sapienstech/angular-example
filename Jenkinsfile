@@ -10,7 +10,7 @@ stage('Checkout') {
 
   try {
           stage('Test') {
-          withNPM(npmrcConfig:'artifactory-npmrc') {
+          withNPM(npmrcConfig:'70dd55ee-2ff7-4e22-b104-57dbad3628f7') {
                       echo "Performing npm build..."
                       sh 'npm install'
                   }
