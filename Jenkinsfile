@@ -13,8 +13,7 @@ stage('Checkout') {
               withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true', "NODE_ENV=CI"]) {
                   sh 'printenv'
                   timeout(40) {
-                      sh ('npm -version')
-                      sh ('ng test')
+                      sh (npm -version)
                   }
               }
           }
@@ -23,4 +22,20 @@ stage('Checkout') {
           println e
           currentBuild.result = 'UNSTABLE'
       }
+
+
+       try {
+                stage('Test') {
+                    withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true', "NODE_ENV=CI"]) {
+                        sh 'printenv'
+                        timeout(40) {
+                            mpm test
+                        }
+                    }
+                }
+
+            } catch (Exception e) {
+                println e
+                currentBuild.result = 'UNSTABLE'
+            }
 }
