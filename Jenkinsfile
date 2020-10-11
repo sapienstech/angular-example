@@ -25,4 +25,8 @@ node ('SpotChrome'){
       println e
       currentBuild.result = 'UNSTABLE'
   }
+
+  stage('Coverall'){
+    mvn cobertura:cobertura coveralls:report -DrepoToken=5zhLl6HKaEVW2tkOGt5O0JWY9ezimkb0w
+  }
 }
