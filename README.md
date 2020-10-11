@@ -25,3 +25,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+<a href='https://coveralls.io/github/sapienstech/angular-example?branch=master'><img src='https://coveralls.io/repos/github/sapienstech/angular-example/badge.svg?branch=master' alt='Coverage Status' /></a>
