@@ -16,7 +16,7 @@ node ('SpotChrome'){
             nodejs(nodeJSInstallationName: 'NodeJS12.0'){
               sh 'npm install'
               sh 'npm install -g @angular/cli'
-              sh 'ng test --watch=false'
+              sh 'ng test --watch=false --code-coverage'
             }
           }
         }
@@ -29,7 +29,7 @@ node ('SpotChrome'){
   stage('Coverall'){
 
    nodejs(nodeJSInstallationName: 'NodeJS12.0'){
-      sh 'istanbul cover jasmine-node --captureExceptions spec/ && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage'
+      sh 'cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage'
     }
   }
 }
