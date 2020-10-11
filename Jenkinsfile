@@ -29,7 +29,7 @@ node ('SpotChrome'){
   stage('Coverall'){
 
    nodejs(nodeJSInstallationName: 'NodeJS12.0'){
-      sh 'npm install coveralls --save-dev'
+      sh 'istanbul cover jasmine-node --captureExceptions spec/ && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage'
     }
   }
 }
