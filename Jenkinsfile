@@ -29,7 +29,7 @@ node ('SpotChrome'){
   stage('Coverall'){
 
    nodejs(nodeJSInstallationName: 'NodeJS12.0'){
-      sh 'cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage'
+      sh 'cat ./coverage/my-new-angular-app/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage'
     }
   }
 }
