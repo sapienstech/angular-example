@@ -27,6 +27,10 @@ node ('SpotChrome'){
   }
 
   stage('Coverall'){
-    coveralls
+
+   nodejs(nodeJSInstallationName: 'NodeJS12.0'){
+                sh 'npm install coveralls'
+                sh 'coveralls'
+              }
   }
 }
