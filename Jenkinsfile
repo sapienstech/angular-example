@@ -41,8 +41,8 @@ withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true',
 }
 
 def getCurrentBranch () {
-    if ("$env.BRANCH_NAME" == 'origin/master'){
-      return  'origin/master';
+    if ("$env.BRANCH_NAME" == 'master'){
+      return  'master';
     }
 
     return "$env.CHANGE_BRANCH"
