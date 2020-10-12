@@ -1,8 +1,9 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 import {of} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {filter, mergeMap, tap} from 'rxjs/operators';
+
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class Service1 {
   hey() {
@@ -10,8 +11,10 @@ export class Service1 {
   }
 
   rxObs() {
-    return of({}).pipe(
-      tap(()=>console.log("cccc"))
+    return of([{id: 1}, {id: 2}]).pipe(
+      mergeMap(v => v),
+      filter((val) => val.id == 1),
+      tap((vv) => console.log('cccc', vv))
     );
   }
 }
