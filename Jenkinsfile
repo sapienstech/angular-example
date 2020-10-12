@@ -39,8 +39,9 @@ echo 'My branch is' + branchName
 }
 
 def getCurrentBranch () {
-    return sh (
-        script: 'git rev-parse --abbrev-ref HEAD',
-        returnStdout: true
-    ).trim()
+    if ("$env.BRANCH_NAME" == 'origin/master'){
+      return  'origin/master';
+    }
+
+    return "$CHANGE_BRANCH"
 }
