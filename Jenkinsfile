@@ -2,10 +2,13 @@ node ('SpotChrome'){
 
   def npm = tool name: 'NodeJS12.0'
   stage('Checkout') {
-    echo "branch name1: $env.GIT_BRANCH"
-    echo 'branch name2: ' $env.GIT_BRANCH
-    echo 'branch name3: ' env.GIT_BRANCH
-      checkout([$class: 'GitSCM', branches: [[name: "env.GIT_BRANCH"]],
+
+  environment {
+      FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
+      GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
+    }
+    echo "branch name1: $GIT_BRANCH"
+      checkout([$class: 'GitSCM', branches: [[name: "$GIT_BRANCH"]],
       extensions       : [[$class: 'CloneOption', timeout: 30]],
       userRemoteConfigs: [[url: 'https://github.com/sapienstech/angular-example.git']]
     ])
