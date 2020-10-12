@@ -1,8 +1,10 @@
 node ('SpotChrome'){
 
-
-def branchName = getCurrentBranch()
-echo 'My branch is' + branchName
+withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true', "NODE_ENV=CI"]) {
+        sh 'printenv'
+    def branchName = getCurrentBranch()
+    echo 'My branch is' + branchName
+}
 
   def npm = tool name: 'NodeJS12.0'
   stage('Checkout') {
