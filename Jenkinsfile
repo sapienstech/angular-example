@@ -43,5 +43,5 @@ def getCurrentBranch () {
       return  'origin/master';
     }
 
-    return "$CHANGE_BRANCH"
+    return "$env.CHANGE_BRANCH"
 }
