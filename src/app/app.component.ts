@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-new-angular-app';
+  sayHello(){
+    console.log("hello");
+  }
 }
