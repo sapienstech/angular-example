@@ -13,7 +13,7 @@ export class Service1 {
   rxObs() {
     return of([{id: 1}, {id: 2}]).pipe(
       mergeMap(v => v),
-      filter((val) => val.id == 1),
+      filter((val) => val.id == 5),
       tap((vv) => console.log('cccc', vv))
     );
   }
