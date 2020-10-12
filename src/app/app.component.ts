@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-new-angular-app';
+
+  test1(){
+    console.log("stam");
+  }
 }
