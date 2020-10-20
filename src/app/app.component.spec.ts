@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import {DummyService} from "./dummy.service";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,6 +12,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [DummyService]
     }).compileComponents();
   });
 
@@ -38,5 +40,5 @@ describe('AppComponent', () => {
     let componentInstance: AppComponent = appComponentComponentFixture.componentInstance;
     componentInstance.setDummyString("hello");
     expect(componentInstance.myDummyString).toEqual("hello");
-  })
+  });
 });
