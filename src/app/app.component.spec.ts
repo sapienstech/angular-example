@@ -32,4 +32,11 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.content span').textContent).toContain('my-new-angular-app app is running!');
   });
+
+  it('should set dummy string', () => {
+    let appComponentComponentFixture = TestBed.createComponent(AppComponent);
+    let componentInstance: AppComponent = appComponentComponentFixture.componentInstance;
+    componentInstance.setDummyString("hello");
+    expect(componentInstance.myDummyString).toEqual("hello");
+  })
 });
