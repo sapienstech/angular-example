@@ -35,6 +35,7 @@ withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true',
 
   stage('Coverall'){
 
+    println "coveralls: " + constants.coverallsClientNG
    nodejs(nodeJSInstallationName: 'NodeJS12.0'){
       sh 'cat ./coverage/my-new-angular-app/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage'
     }
