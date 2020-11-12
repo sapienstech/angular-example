@@ -35,7 +35,7 @@ withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true',
 
   stage('Coverall'){
 
-withCredentials([string(credentialsId: 'constants.coverallsClientNG', variable: 'TOKEN')]) {
+withCredentials([string(credentialsId: constants.coverallsClientNG, variable: 'TOKEN')]) {
     sh ' Token: $TOKEN'
   }
 
