@@ -39,6 +39,7 @@ withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true',
         sh ('echo "repo_token: ${SECRET}
               name: Coveralls GitHub Action
               uses: coverallsapp/github-action@v1.1.2"  > coveralls.yml ')
+        sh ('cat coveralls.yml')
         nodejs(nodeJSInstallationName: 'NodeJS12.0') {
             sh 'cat ./coverage/my-new-angular-app/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage'
         }
