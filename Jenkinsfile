@@ -35,9 +35,9 @@ withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true',
 
   stage('Coverall'){
 
-  withCredentials([usernamePassword(credentialsId: 'constants.example', variable: 'PASSWORD')]) {
+   withCredentials([string(credentialsId: constants.example, variable: 'SECRET')]) {
              sh '''
-                echo $PASSWORD >> tmp
+                echo $SECRET >> tmp
               '''
             }
             sh 'cat tmp'
