@@ -35,18 +35,12 @@ withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true',
 
   stage('Coverall'){
 
-   withCredentials([string(credentialsId: constants.example, variable: 'SECRET')]) {
-             sh '''
-                echo $SECRET >> tmp
-              '''
-            }
-            sh 'cat tmp'
-
     withCredentials([string(credentialsId: constants.example, variable: 'SECRET')]) {
         echo "My secret text is '${SECRET}'"
-        sh ('echo "repo_token: ${SECRET} \n\rname: Coveralls GitHub Action\n\ruses: coverallsapp/github-action@v1.1.2"  > coveralls.yml ')
+        sh ('echo "repo_token: ${SECRET} \n\rname: Coveralls GitHub Action\n\ruses: coverallsapp/github-action@v1.1.2"  > coveralls1.yml ')
     }
 
+    sh ('cat coveralls1.yml')
     sh ('cat coveralls.yml')
             nodejs(nodeJSInstallationName: 'NodeJS12.0') {
                 sh 'cat ./coverage/my-new-angular-app/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage'
