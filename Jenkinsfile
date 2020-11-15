@@ -34,9 +34,7 @@ withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true',
   }
 
   stage('Coverall'){
-
-stage('Code Coverage') {
-    withCredentials([string(credentialsId: constants.example, variable: 'SECRET')]) { //set SECRET with the credential content
+    withCredentials([string(credentialsId: constants.example, variable: 'SECRET')]) {
         echo "My secret text is '${SECRET}'"
 
         nodejs(nodeJSInstallationName: 'NodeJS12.0') {
@@ -45,7 +43,7 @@ stage('Code Coverage') {
     }
 }
 
-
+}
 
 def getCurrentBranch () {
     if ("$env.BRANCH_NAME" == 'master'){
