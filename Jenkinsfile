@@ -35,15 +35,17 @@ withEnv(["CHROME_BIN=/usr/bin/google-chrome-stable", "DISPLAY=:99.0", 'CI=true',
 
   stage('Coverall'){
 
-withCredentials([string(credentialsId: constants.coverallsClientNG, variable: 'TOKEN')]) {
-    sh ' Token: $TOKEN'
-  }
+stage('Code Coverage') {
+    withCredentials([string(credentialsId: constants.example, variable: 'SECRET')]) { //set SECRET with the credential content
+        echo "My secret text is '${SECRET}'"
 
-   nodejs(nodeJSInstallationName: 'NodeJS12.0'){
-      sh 'cat ./coverage/my-new-angular-app/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage'
+        nodejs(nodeJSInstallationName: 'NodeJS12.0') {
+            sh 'cat ./coverage/my-new-angular-app/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage'
+        }
     }
-  }
 }
+
+
 
 def getCurrentBranch () {
     if ("$env.BRANCH_NAME" == 'master'){
